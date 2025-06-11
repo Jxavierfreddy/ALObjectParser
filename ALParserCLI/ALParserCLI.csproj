@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Include all parser source files recursively -->
-    <Compile Include="..\**\*.cs" Exclude="**\bin\**;**\obj\**" />
+    <!-- Explicitly include Program.cs -->
+    <Compile Include="Program.cs" />
+    
+    <!-- Include all parser source files from parent folders -->
+    <Compile Include="..\ALObjectParser\**\*.cs" Exclude="..\ALObjectParser\**\bin\**;..\ALObjectParser\**\obj\**" />
   </ItemGroup>
 
 </Project>
