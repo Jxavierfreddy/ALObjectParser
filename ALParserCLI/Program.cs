@@ -1,19 +1,15 @@
-using ALObjectParser.Library;
-using System.Text.Json;
-using System.Linq;
+<Project Sdk="Microsoft.NET.Sdk">
 
-string path = args.FirstOrDefault(a => a.StartsWith("--path="))?.Split("=")[1] ?? ".";
-string query = args.FirstOrDefault(a => a.StartsWith("--query="))?.Split("=")[1] ?? "";
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
-var objects = ALObjectReaderNew.ParseFolder(path);
+  <ItemGroup>
+    <Compile Include="..\ALObjectParser\**\*.cs" Exclude="..\ALObjectParser\**\bin\**;..\ALObjectParser\**\obj\**" />
+  </ItemGroup>
 
-var results = objects
-    .SelectMany(obj => obj.Methods ?? new List<ALObjectParser.Library.Models.ALMethod>())
-    .Where(method => method.Name.Contains(query, System.StringComparison.OrdinalIgnoreCase))
-    .Select(m => new {
-        Object = m.Parent?.Name,
-        Method = m.Name,
-        m.Summary
-    });
-
-Console.WriteLine(JsonSerializer.Serialize(results));
+</Project>
