@@ -2,11 +2,9 @@ name: Build ALParserCLI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -20,7 +18,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'  # Use latest supported 7.x SDK
+          dotnet-version: '7.0.x'
 
       - name: Restore dependencies
         run: dotnet restore ALParserCLI/ALParserCLI.csproj
@@ -28,7 +26,7 @@ jobs:
       - name: Build ALParserCLI
         run: dotnet build ALParserCLI/ALParserCLI.csproj --configuration Release --no-restore
 
-      - name: Publish ALParserCLI (single-file executable)
+      - name: Publish ALParserCLI (self-contained single file)
         run: |
           dotnet publish ALParserCLI/ALParserCLI.csproj \
             --configuration Release \
