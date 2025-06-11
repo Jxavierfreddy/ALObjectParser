@@ -1,9 +1,9 @@
 name: Build ALParserCLI
 
 on:
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
   push:
-    branches: [ main ]  # or replace with your working branch
+    branches: [ main ]
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
       run: dotnet publish ./ALParserCLI/ALParserCLI.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o output
 
     - name: Upload exe artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ALParserCLI
         path: output/ALParserCLI.exe
