@@ -1,24 +1,28 @@
 name: Build ALParserCLI
 
 on:
+  workflow_dispatch:  # Allows manual trigger
   push:
-    branches: [ main ]
+    branches: [ main ]  # or replace with your working branch
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '7.0.x'
-      - name: Publish Self-Contained EXE
-        run: |
-          cd ALParserCLI
-          dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ALParserCLI.exe
-          path: ALParserCLI/bin/Release/net7.0/win-x64/publish/ALParserCLI.exe
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Publish CLI as self-contained exe
+      run: dotnet publish ./ALParserCLI/ALParserCLI.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o output
+
+    - name: Upload exe artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ALParserCLI
+        path: output/ALParserCLI.exe
