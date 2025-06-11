@@ -7,7 +7,7 @@
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>false</PublishTrimmed>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ALObjectParser\ALObjectParser.csproj" />
-  </ItemGroup>
+ <ItemGroup>
+  <Compile Include="..\ALObjectParser\**\*.cs" />
+</ItemGroup>
 </Project>
