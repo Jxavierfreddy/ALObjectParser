@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- change to linux-x64 for Linux -->
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>false</PublishTrimmed>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\ALObjectParser\ALObjectParser.csproj" />
+    <!-- Include all parser source files recursively -->
+    <Compile Include="..\**\*.cs" Exclude="**\bin\**;**\obj\**" />
   </ItemGroup>
+
 </Project>
