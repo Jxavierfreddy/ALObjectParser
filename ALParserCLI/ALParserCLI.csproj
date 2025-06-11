@@ -7,16 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-<<<<<<< HEAD
 
   <ItemGroup>
     <!-- Include all parser source files recursively -->
     <Compile Include="..\**\*.cs" Exclude="**\bin\**;**\obj\**" />
   </ItemGroup>
 
-=======
- <ItemGroup>
-  <Compile Include="..\ALObjectParser\**\*.cs" />
-</ItemGroup>
->>>>>>> 17e8402e293417c4e5d4fc948ef6ac3b25b49256
 </Project>
