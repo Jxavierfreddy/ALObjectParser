@@ -1,25 +1,12 @@
-<<<<<<< HEAD
 using ALObjectParser.Library;
 using System.Text.Json;
 using System.Linq;
-=======
-<Project Sdk="Microsoft.NET.Sdk">
->>>>>>> 17e8402e293417c4e5d4fc948ef6ac3b25b49256
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+string path = args.FirstOrDefault(a => a.StartsWith("--path="))?.Split("=")[1] ?? ".";
+string query = args.FirstOrDefault(a => a.StartsWith("--query="))?.Split("=")[1] ?? "";
 
-  <ItemGroup>
-    <!-- Include all .cs files under parent folder (ALObjectParser) recursively -->
-    <Compile Include="..\**\*.cs" Exclude="**\bin\**;**\obj\**" />
-  </ItemGroup>
+var objects = ALObjectReaderNew.ParseFolder(path);
 
-<<<<<<< HEAD
 var results = objects
     .SelectMany(obj => obj.Methods ?? new List<ALObjectParser.Library.Models.ALMethod>())
     .Where(method => method.Name.Contains(query, System.StringComparison.OrdinalIgnoreCase))
@@ -30,6 +17,3 @@ var results = objects
     });
 
 Console.WriteLine(JsonSerializer.Serialize(results));
-=======
-</Project>
->>>>>>> 17e8402e293417c4e5d4fc948ef6ac3b25b49256
